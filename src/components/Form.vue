@@ -7,9 +7,9 @@
         <label> Current Volume:</label>
         <input type="string"  v-model="visaCurrentVolume" @blur="calculate">
         <label> Current Rate:</label>
-        <input type="number" step="0.01" v-model="visaCurrentRate" sufix="%" @blur="calculate"><span>%</span>
+        <input type="number" step="0.01" v-model="visaCurrentRate" @blur="calculate"><span>%</span>
         <label> TP Rate:</label>
-        <input type="number" step="0.01" v-model="visaTPRate" sufix="%" @blur="calculate"><span>%</span>
+        <input type="number" step="0.01" v-model="visaTPRate"  @blur="calculate"><span>%</span>
         <p> Current Commission: {{visaCurrentCommission}} </p>
         <p> TP Commission:{{visaTPCommission}}</p>
         <p> Monthly Saving: {{visaMonthlySaving}} </p>
@@ -90,12 +90,12 @@ export default {
     },
     methods:{
         calculate(){
-            this.visaCurrentCommission = Math.round(this.visaCurrentVolume * (this.visaCurrentRate*0.01) * 100)/100
-            this.visaTPCommission = this.visaCurrentVolume * (this.visaTPRate*0.01)
-            this.masterCurrentCommission = this.masterCurrentVolume * (this.masterCurrentRate*0.01)
-            this.masterTPCommission = this.masterCurrentVolume * (this.masterTPRate*0.01)
-            this.businessCurrentCommission = this.businessCurrentVolume * (this.businessCurrentRate*0.01)
-            this.businessTPCommission = this.businessCurrentVolume * (this.businessTPRate*0.01)
+            this.visaCurrentCommission = Math.round((this.visaCurrentVolume * (this.visaCurrentRate*0.01))* 100)/100
+            this.visaTPCommission = Math.round((this.visaCurrentVolume * (this.visaTPRate*0.01))*100)/100
+            this.masterCurrentCommission = Math.round((this.masterCurrentVolume * (this.masterCurrentRate*0.01))*100)/100
+            this.masterTPCommission = Math.round((this.masterCurrentVolume * (this.masterTPRate*0.01))*100)/100
+            this.businessCurrentCommission = Math.round((this.businessCurrentVolume * (this.businessCurrentRate*0.01))*100)/100
+            this.businessTPCommission = Math.round((this.businessCurrentVolume * (this.businessTPRate*0.01))*100)/100
 
             this.visaMonthlySaving = this.visaCurrentCommission - this.visaTPCommission
             this.visaAnnualSaving = this.visaMonthlySaving*12
